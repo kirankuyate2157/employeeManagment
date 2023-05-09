@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TiEdit } from "react-icons/ti";
 import { MdDelete } from "react-icons/md";
 
-const Datarow = ({ data, onUpdate }) => {
+const Datarow = ({ data, onUpdate, onDelete }) => {
   const {
     id,
     name: initialName,
@@ -29,6 +29,12 @@ const Datarow = ({ data, onUpdate }) => {
     setName(initialName);
     setCompany(initialCompany);
     setEmail(initialEmail);
+  };
+
+  const handleDeleteClick = () => {
+    if (window.confirm("Are you sure you want to delete this row?")) {
+      onDelete(id);
+    }
   };
 
   return (
@@ -108,7 +114,10 @@ const Datarow = ({ data, onUpdate }) => {
               className='hover:cursor-pointer'
               onClick={handleEditClick}
             />
-            <MdDelete className='hover:cursor-pointer' />
+            <MdDelete
+              className='hover:cursor-pointer'
+              onClick={handleDeleteClick}
+            />
           </div>
         )}
       </td>
