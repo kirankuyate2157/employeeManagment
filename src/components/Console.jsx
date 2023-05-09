@@ -1,70 +1,76 @@
 import React, { useState } from "react";
-import Tabs from "./Tabs";
-import { HiChevronLeft, HiChevronDown } from "react-icons/hi";
-import Table from "./Table";
+
 import Nav from "./Nav";
+import Usrdata from "./Usrdata";
+import Adduser from "./Adduser";
 
 const Console = () => {
-  const [open, setOpen] = useState(false);
-  const [adminAccess, setAdminAccess] = useState(false);
-  const toggleOpen = () => {
-    setOpen(!open);
+  const [activeTab, setActiveTab] = useState("Home");
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
   };
-  const toggleAdminAccess = () => {
-    setAdminAccess(!adminAccess);
+
+  const renderComponent = () => {
+    if (activeTab === "Home") {
+      return null; // Replace with the component you want to render for the "Home" tab
+    } else if (activeTab === "Console") {
+      return <Usrdata />;
+    } else if (activeTab === "Add User") {
+      return <Adduser />;
+    } else {
+      return null;
+    }
   };
 
   return (
     <div className=''>
       {/* tabs */}
       <Nav />
-      <div className='m-5'>
-        <div className='flex flex-row justify-between bg-gray-100 border-none rounded px-3'>
-          <div className='bg-red-200 flex gap-5 px-6 py-4 my-2  items-center border rounded-2xl'>
-            <h1
-              className={`${adminAccess ? "font-semibold" : "font-normal"}`}
-              onClick={toggleAdminAccess}
-            >
-              Members
-            </h1>
-            <span className='w-[1px] bg-black h-4/5' />
-            <h1
-              className={`${adminAccess ? "font-normal" : "font-semibold"}`}
-              onClick={toggleAdminAccess}
-            >
-              Admin
-            </h1>
-          </div>
-          <div className='flex flex-col justify-center text-gray-500 font-medium items-end'>
-            <h1>
-              Total members: <span className='text-gray-600'>2000</span>
-            </h1>
-            <h1>
-              Current used : <span className='text-gray-600'>1897</span>
-            </h1>
+      <div className='flex flex-row w-full'>
+        <div className='bg-red-300 w-[13%]'>
+          <div className='h-[89vh]'>
+            <ul className='gap-1 flex flex-col my-5 '>
+              <li
+                className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${
+                  activeTab === "Home"
+                    ? "bg-red-700 border-r-4 border-gray-600"
+                    : ""
+                } items-center`}
+                onClick={() => handleTabClick("Home")}
+              >
+                <a href='#' className='text-white'>
+                  Home
+                </a>
+              </li>
+              <li
+                className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${
+                  activeTab === "Console"
+                    ? "bg-red-700 border-r-4 border-gray-600"
+                    : ""
+                } items-center`}
+                onClick={() => handleTabClick("Console")}
+              >
+                <a href='#' className='text-white'>
+                  Console
+                </a>
+              </li>
+              <li
+                className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${
+                  activeTab === "Add User"
+                    ? "bg-red-700 border-r-4 border-gray-600"
+                    : ""
+                } items-center`}
+                onClick={() => handleTabClick("Add User")}
+              >
+                <a href='#' className='text-white'>
+                  Add User
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className='gap-5 flex justify-between'>
-          <div className='flex'>
-            <h1 className='text-3xl flex justify-center items-center p-2 px-5'>
-              Members
-            </h1>
-            <Tabs title='Add User' />
-            <Tabs title='Import members' />
-            <Tabs title='export members(Excel)' />
-          </div>
-          <div
-            className={`hover:cursor-pointer py-1 px-3 pr-4  m-2 border rounded-2xl flex justify-center items-center text-xl font-medium bg-red-300`}
-            onClick={toggleOpen}
-          >
-            {open ? <HiChevronLeft /> : <HiChevronDown />}
-            <h1 className=' flex items-center pl-1'>Filter</h1>
-          </div>
-        </div>
-      </div>
-      {/* tables */}
-      <div className='bg-purple-100 mx-5 p-1 border-none rounded'>
-        <Table />
+        <div className='w-[87%]'>{renderComponent()}</div>
       </div>
     </div>
   );
