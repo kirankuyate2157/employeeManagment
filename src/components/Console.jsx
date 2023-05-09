@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Tabs from "./Tabs";
 import { HiChevronLeft, HiChevronDown } from "react-icons/hi";
+import Table from "./Table";
 
 const Console = () => {
   const [open, setOpen] = useState(false);
@@ -60,7 +61,9 @@ const Console = () => {
         </div>
       </div>
       {/* tables */}
-      <div className='bg-purple-100 p-20 m-5'></div>
+      <div className='bg-purple-100 mx-5 p-1 border-none rounded'>
+        <Table />
+      </div>
     </div>
   );
 };
