@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Tabs from "./Tabs";
 import { HiChevronLeft, HiChevronDown } from "react-icons/hi";
 import Table from "./Table";
+import Nav from "./Nav";
 
 const Console = () => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,7 @@ const Console = () => {
   return (
     <div className=''>
       {/* tabs */}
+      <Nav />
       <div className='m-5'>
         <div className='flex flex-row justify-between bg-gray-100 border-none rounded px-3'>
           <div className='bg-red-200 flex gap-5 px-6 py-4 my-2  items-center border rounded-2xl'>
