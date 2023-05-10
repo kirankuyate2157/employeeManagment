@@ -38,7 +38,7 @@ const Datarow = ({ data, onUpdate, onDelete }) => {
   };
 
   return (
-    <tr className='flex justify-between px-3 border text-md bg-gray-100 mt-[1px] mx-1 gap-2 rounded-lg items-center align-middle'>
+    <tr className='flex justify-between px-3 border-b text-md  mt-[1px] mx-1 gap-2 rounded-lg items-center align-middle'>
       <td className='font-normal flex flex-wrap justify-center px-2 p-1 rounded w-[5%]'>
         {id}
       </td>

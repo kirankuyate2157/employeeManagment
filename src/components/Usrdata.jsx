@@ -60,7 +60,7 @@ const Usrdata = () => {
           </div>
         </div>
         {/* tables */}
-        <div className='bg-purple-100 mx-5 p-1 border-none rounded'>
+        <div className='bg-gray-100 mx-5 p-1 border-none rounded'>
           <Table />
         </div>
       </div>

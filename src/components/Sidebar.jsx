@@ -8,7 +8,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className='h-[89vh]'>
+    <div className='h-[89vh] fixed'>
       <ul className='gap-1 flex flex-col my-5 '>
         <li
           className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${

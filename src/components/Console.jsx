@@ -24,19 +24,19 @@ const Console = () => {
   };
 
   return (
-    <div className=''>
-      {/* tabs */}
+    <>
       <Nav />
-      <div className='flex flex-row w-full'>
-        <div className='bg-red-300 w-[13%]'>
-          <div className='h-[89vh]'>
-            <ul className='gap-1 flex flex-col my-5 '>
+      <div className='flex h-screen '>
+        {/* Sidebar */}
+        <div className='w-1/6 bg-red-300'>
+          <div className='h-screen overflow-y-auto'>
+            <ul className='flex flex-col gap-1 my-5'>
               <li
-                className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${
+                className={`flex items-center justify-start p-2 pl-7 ${
                   activeTab === "Home"
                     ? "bg-red-700 border-r-4 border-gray-600"
                     : ""
-                } items-center`}
+                }`}
                 onClick={() => handleTabClick("Home")}
               >
                 <a href='#' className='text-white'>
@@ -44,11 +44,11 @@ const Console = () => {
                 </a>
               </li>
               <li
-                className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${
+                className={`flex items-center justify-start p-2 pl-7 ${
                   activeTab === "Console"
                     ? "bg-red-700 border-r-4 border-gray-600"
                     : ""
-                } items-center`}
+                }`}
                 onClick={() => handleTabClick("Console")}
               >
                 <a href='#' className='text-white'>
@@ -56,11 +56,11 @@ const Console = () => {
                 </a>
               </li>
               <li
-                className={`w-full drop-shadow-xl flex p-2 justify-starts pl-7 ${
+                className={`flex items-center justify-start p-2 pl-7 ${
                   activeTab === "Add User"
                     ? "bg-red-700 border-r-4 border-gray-600"
                     : ""
-                } items-center`}
+                }`}
                 onClick={() => handleTabClick("Add User")}
               >
                 <a href='#' className='text-white'>
@@ -70,9 +70,16 @@ const Console = () => {
             </ul>
           </div>
         </div>
-        <div className='w-[87%]'>{renderComponent()}</div>
+
+        {/* Main Content */}
+        <div className='w-5/6 overflow-y-auto'>
+          {/* Navbar */}
+
+          {/* Rendered Component */}
+          {renderComponent()}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
