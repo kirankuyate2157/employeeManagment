@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Nav from "./Nav";
 import Usrdata from "./Usrdata";
 import Adduser from "./Adduser";
+import Home from "./Home";
 
 const Console = () => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -13,7 +14,7 @@ const Console = () => {
 
   const renderComponent = () => {
     if (activeTab === "Home") {
-      return null; // Replace with the component you want to render for the "Home" tab
+      return <Home />; // Replace with the component you want to render for the "Home" tab
     } else if (activeTab === "Console") {
       return <Usrdata />;
     } else if (activeTab === "Add User") {
@@ -73,8 +74,6 @@ const Console = () => {
 
         {/* Main Content */}
         <div className='w-5/6 overflow-y-auto'>
-          {/* Navbar */}
-
           {/* Rendered Component */}
           {renderComponent()}
         </div>

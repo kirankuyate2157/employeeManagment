@@ -4,15 +4,18 @@ import { MdDelete } from "react-icons/md";
 
 const Datarow = ({ data, onUpdate, onDelete }) => {
   const {
-    id,
-    name: initialName,
-    company: initialCompany,
+    ID,
+    firstName: initialFirstName,
+    lastName: initialLastName,
+    companyName: initialCompanyName,
     email: initialEmail,
   } = data;
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(initialName);
-  const [company, setCompany] = useState(initialCompany);
+  const [firstName, setFirstName] = useState(initialFirstName);
+  const [lastName, setLastName] = useState(initialLastName);
+  const [companyName, setCompanyName] = useState(initialCompanyName);
   const [email, setEmail] = useState(initialEmail);
+  const [name, setName] = useState(`${firstName} ${lastName}`);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -20,27 +23,37 @@ const Datarow = ({ data, onUpdate, onDelete }) => {
 
   const handleSaveClick = () => {
     setIsEditing(false);
-    onUpdate({ id, name, company, email });
+    const [editedFirstName, ...editedLastNameArr] = name.split(" ");
+    const editedLastName = editedLastNameArr.join(" ");
+    setFirstName(editedFirstName);
+    setLastName(editedLastName);
+    onUpdate({
+      ID,
+      firstName: editedFirstName,
+      lastName: editedLastName,
+      companyName,
+      email,
+    });
   };
 
   const handleCancelClick = () => {
     setIsEditing(false);
     // Reset the edited values back to their original values
-    setName(initialName);
-    setCompany(initialCompany);
+    setName(`${firstName} ${lastName}`);
+    setCompanyName(initialCompanyName);
     setEmail(initialEmail);
   };
 
   const handleDeleteClick = () => {
     if (window.confirm("Are you sure you want to delete this row?")) {
-      onDelete(id);
+      onDelete(ID);
     }
   };
 
   return (
-    <tr className='flex justify-between px-3 border-b text-md  mt-[1px] mx-1 gap-2 rounded-lg items-center align-middle'>
+    <tr className='flex justify-between px-3 border-b text-md  mt-[1px] mx-1 gap-2 rounded-lg items-center align-mIDdle'>
       <td className='font-normal flex flex-wrap justify-center px-2 p-1 rounded w-[5%]'>
-        {id}
+        {ID}
       </td>
       <td className='font-normal overflow-auto px-2 p-1 rounded w-[15%]'>
         {isEditing ? (
@@ -61,12 +74,12 @@ const Datarow = ({ data, onUpdate, onDelete }) => {
           <input
             type='text'
             className='w-full focus:outline-none'
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
           />
         ) : (
           <div className='overflow-x-auto whitespace-nowrap truncate'>
-            {company}
+            {companyName}
           </div>
         )}
       </td>
@@ -88,7 +101,7 @@ const Datarow = ({ data, onUpdate, onDelete }) => {
         ********
       </td>
       <td className='font-normal flex justify-center px-2 rounded w-[15%]'>
-        <div className='bg-green-200 text-green-600 items-center align-middle pb-1 rounded-xl px-4 text-sm'>
+        <div className='bg-green-200 text-green-600 items-center align-mIDdle pb-1 rounded-xl px-4 text-sm'>
           active
         </div>
       </td>

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Datarow from "./Datarow";
 
 const data = [
@@ -155,8 +156,23 @@ const data = [
 ];
 
 const Table = () => {
-  const [tableData, setTableData] = useState(data);
+  const [tableData, setTableData] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from API
+        const response = await axios.get("http://localhost:8080/api/v1/users");
+        setTableData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        // Handle error, if needed
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const handleUpdate = (updatedData) => {
     const updatedTableData = tableData.map((item) => {
       if (item.id === updatedData.id) {

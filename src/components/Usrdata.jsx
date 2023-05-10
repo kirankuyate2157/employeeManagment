@@ -3,7 +3,7 @@ import Tabs from "./Tabs";
 import { HiChevronLeft, HiChevronDown } from "react-icons/hi";
 import Table from "./Table";
 
-const Usrdata = () => {
+const Usrdata = ({ activeTab, handleTabClick }) => {
   const [open, setOpen] = useState(false);
   const [adminAccess, setAdminAccess] = useState(false);
   const toggleOpen = () => {
@@ -46,7 +46,12 @@ const Usrdata = () => {
               <h1 className='text-3xl flex justify-center items-center p-2 px-5'>
                 Members
               </h1>
-              <Tabs title='Add User' />
+              <Tabs
+                title='Add User'
+                activeTab={activeTab}
+                handleTabClick={handleTabClick}
+                tabName='Add User'
+              />
               <Tabs title='Import members' />
               <Tabs title='export members(Excel)' />
             </div>

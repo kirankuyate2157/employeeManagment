@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Usrdata from "./Usrdata";
 
-const Adduser = ({ addUser }) => {
+const Adduser = () => {
   const [user, setUser] = useState({
     id: "",
     name: "",
@@ -16,20 +18,61 @@ const Adduser = ({ addUser }) => {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    addUser(user);
-    setUser({
-      id: "",
-      name: "",
-      company: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      status: "",
-    });
-  };
 
+    // Perform validation
+    if (
+      !user.id ||
+      !user.name ||
+      !user.email ||
+      !user.password ||
+      !user.confirmPassword
+    ) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (user.password !== user.confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+    const [firstName, ...lastNameArr] = user.name.split(" ");
+    const lastName = lastNameArr.join(" ");
+
+    try {
+      const userData = {
+        ID: user.id,
+        firstName: firstName,
+        lastName: lastName,
+        companyName: user.company,
+        email: user.email,
+        password: user.password,
+      };
+
+      // Send data to API
+      const response = await axios
+        .post("http://localhost:8080/api/v1/users", userData)
+        .then((response) => {
+          // Handle successful response, if needed
+          // console.log(response.data);
+          // Reset form fields
+          setUser({
+            id: "",
+            name: "",
+            company: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            status: "",
+          });
+        });
+    } catch (error) {
+      // Handle error, if needed
+      alert("duplicate data entry");
+      console.log(error.message);
+    }
+  };
   return (
     <form
       onSubmit={handleSubmit}
