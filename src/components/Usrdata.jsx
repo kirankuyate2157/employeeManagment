@@ -111,7 +111,9 @@ const Usrdata = ({ activeTab, handleTabClick }) => {
     const fetchData = async () => {
       try {
         // Fetch data from API
-        const response = await axios.get("http://localhost:8080/api/v1/users");
+        const response = await axios.get(
+          "https://kways.onrender.com/api/v1/users"
+        );
         setData(response.data);
         console.log(response.data);
       } catch (error) {

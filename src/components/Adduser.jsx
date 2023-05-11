@@ -52,9 +52,8 @@ const Adduser = () => {
 
       // Send data to API
       const response = await axios
-        .post("http://localhost:8080/api/v1/users", userData)
+        .post("https://kways.onrender.com/api/v1/users", userData)
         .then((response) => {
-          // Handle successful response, if needed
           // console.log(response.data);
           // Reset form fields
           setUser({
