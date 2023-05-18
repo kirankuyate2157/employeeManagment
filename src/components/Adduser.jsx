@@ -50,6 +50,8 @@ const Adduser = () => {
         password: user.password,
       };
 
+      //
+
       // Send data to API
       const response = await axios
         .post("https://kways.onrender.com/api/v1/users", userData)

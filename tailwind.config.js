@@ -5,4 +5,9 @@ export default {
     extend: {},
   },
   plugins: [],
+  fontFamily: {
+    Whitney: ["Whitney"],
+    Ginto: ["Ginto"],
+    ggSans: ["ggSans"],
+  },
 };
